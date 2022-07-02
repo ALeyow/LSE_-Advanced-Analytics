@@ -11,21 +11,28 @@ dim(lego)
 class(lego)
 summary(lego)
 
-#Number of reviews by age & play star difficulty
-qplot(ages, num_reviews, data=lego) + geom_point(data = lego, aes(x = ages, y = num_reviews, color = play_star_rating))
+#Check for missing values
+lego[is.na(lego)]
 
+#Number of reviews by age & play star difficulty
+qplot(ages, num_reviews, data = lego, main = "Number of Reviews by Age") + geom_point(data = lego, aes(x = ages, y = num_reviews, color = play_star_rating))
+#Above table shows the count of reviews made by each age NOT the sum
+
+#Chart the table above with play_star_rating labels for comparison
 qplot(ages, num_reviews, data = lego) + geom_point(data = lego, aes(x = ages, y = num_reviews, color = play_star_rating)) + geom_text(aes(label = play_star_rating), nudge_y = 10)
 
-qplot(ages, num_reviews, data = lego, main = "Number of Reviews by Age") + geom_point(data = lego, aes(x = ages, y = num_reviews, color = play_star_rating))
 
 #Count of Ages 
 qplot(ages, data = lego, geom = "bar", main = "Age Count")
 
-#Review Difficulty 
-qplot(ages, num_reviews, data = lego) + geom_point(data = lego, aes(x = ages, y = num_reviews, color = review_difficulty)) + geom_text(aes(label = review_difficulty))
 
 #Count of Reviews by Age Group
+ggplot(lego, aes(x=ages, y=num_reviews)) +  geom_bar(stat = "identity") + ggtitle("Review Count by Age")
+
+#Same plot as above but with labels for reference
 ggplot(lego, aes(x=ages, y=num_reviews)) +  geom_bar(stat = "identity") + ggtitle("Review Count by Age") + geom_text(aes(label = num_reviews))
+
+#The barplot was able to determine that age group 8 provided the highests number of reviews of lego set with a total of 53379, though this was unreadable on the same plot when adding labels. However it can be clearly seen from looking at the bar chart. 
 
 
 #Create a new dataframe using data_age25 <- data[data$age>=25,]
@@ -36,10 +43,11 @@ data_age25
 qplot(list_price, data=data_age25, geom="bar")
 
 #Scatterplot 
-qplot(y = list_price, data = data_age25) + ggtitle("Lego Purchase Prices")
+qplot(x = ages, y = list_price, data = data_age25) + ggtitle("Lego Purchase Prices") + aes(x = ages, y = list_price, color = list_price)
 
-#Histogram - 
-qplot(list_price, data = data_age25)
+#Scatterplot with labels 
+qplot(x = ages, y = list_price, data = data_age25) + ggtitle("Lego Purchase Prices") + geom_text(aes(label = list_price))+ aes(x = ages, y = list_price, color = list_price)
 
-#Boxplot
-qplot(list_price, ages, data = data_age25, geom = "boxplot")
+#The scatterplot was the best chart to use for comparing purchases by ages 25 and above. Adding labels to the chart made the data unreadable due to data size but was able to determine that the highest price paid by 25 and above was $259.87
+
+
