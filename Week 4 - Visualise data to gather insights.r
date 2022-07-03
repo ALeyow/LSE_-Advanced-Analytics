@@ -14,6 +14,8 @@ summary(lego)
 #Check for missing values
 lego[is.na(lego)]
 
+
+##VISUALISE THE DATA TO UNDERSTAND THE TRENDS ACROSS VARIABLES
 #Number of reviews by age & play star difficulty
 qplot(ages, num_reviews, data = lego, main = "Number of Reviews by Age") + geom_point(data = lego, aes(x = ages, y = num_reviews, color = play_star_rating))
 #Above table shows the count of reviews made by each age NOT the sum
@@ -32,7 +34,8 @@ ggplot(lego, aes(x=ages, y=num_reviews)) +  geom_bar(stat = "identity") + ggtitl
 #Same plot as above but with labels for reference
 ggplot(lego, aes(x=ages, y=num_reviews)) +  geom_bar(stat = "identity") + ggtitle("Review Count by Age") + geom_text(aes(label = num_reviews))
 
-#The barplot was able to determine that age group 8 provided the highests number of reviews of lego set with a total of 53379, though this was unreadable on the same plot when adding labels. However it can be clearly seen from looking at the bar chart. 
+#The barplot was able to determine that age group 8 provided the highest number of reviews of lego set with a total of 53379 reviews, though this was unreadable on the same plot when adding labels. However it can be clearly seen from looking at the bar chart. 
+
 
 
 #Create a new dataframe using data_age25 <- data[data$age>=25,]
