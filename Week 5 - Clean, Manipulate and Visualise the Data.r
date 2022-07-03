@@ -42,7 +42,7 @@ qplot(Publisher, data = games_sales, geom = 'bar')
 qplot(Publisher, fill = Genre, data = games_sales, geom = 'bar')
 
 #Shows the sales split into Genre
-qplot(Genre, data = games_sales, geom = 'bar', main = 'Game Sales Per Genre')
+qplot(Genre, data = games_sales, geom = 'bar', main = 'Game Per Genre')
 
 #Shows sales of game genres across each release year
 qplot(Year, fill = Genre, data = games_sales, geom = 'bar')
