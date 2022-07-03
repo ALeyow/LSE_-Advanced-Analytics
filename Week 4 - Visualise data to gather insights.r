@@ -43,10 +43,9 @@ data_age25 <- lego[lego$age>=25,]
 data_age25
 
 #Create a chart to determine highest price
-qplot(list_price, data=data_age25, geom="bar")
 
 #Scatterplot 
-qplot(x = ages, y = list_price, data = data_age25) + ggtitle("Lego Purchase Prices") + aes(x = ages, y = list_price, color = list_price)
+qplot(x = ages, y = list_price, data = data_age25) + ggtitle("Lego Purchase Prices for Age 25 and Above") + aes(x = ages, y = list_price, color = list_price)
 
 #Scatterplot with labels 
 qplot(x = ages, y = list_price, data = data_age25) + ggtitle("Lego Purchase Prices") + geom_text(aes(label = list_price))+ aes(x = ages, y = list_price, color = list_price)
